@@ -1,3 +1,5 @@
+//Скрипты валидации формы регистрации
+
 signupLogin.onblur = function () {
     if ((signupLogin.value).trim() == "") { // если поле не заполнено или заполнено пробелами
         signupLogin.classList.add("error");
@@ -90,5 +92,62 @@ registrationForm.onsubmit = function () {
         return false;
     } else {
         registrationForm.submit();
+    }
+}
+
+//Скрипты валидации формы авторизации
+
+inputLogin.onblur = function () {
+    if ((inputLogin.value).trim() == "") { // если поле не заполнено или заполнено пробелами
+        inputLogin.classList.add("error");
+        inputLogin.value = "";
+        inputLoginLabel.firstChild.textContent = "Введите логин";
+    }
+};
+
+inputLogin.oninput = function () {
+    inputLogin.classList.remove("error");
+    if (logAuth.children.length > 2) {
+        inputLogin.classList.remove("error");
+        logAuth.lastElementChild.remove();
+    }
+    inputLogin.setAttribute("value", inputLogin.value);
+    inputLoginLabel.firstChild.textContent = "Логин";
+};
+
+inputPassword.onblur = function () {
+    if ((inputPassword.value).trim() == "") { // если поле не заполнено или заполнено пробелами
+        inputPassword.classList.add("error");
+        inputPassword.value = "";
+        inputPasswordLabel.firstChild.textContent = "Введите пароль";
+    }
+};
+
+inputPassword.oninput = function () {
+    inputPassword.classList.remove("error");
+    if (pasAuth.children.length > 2) {
+        inputPassword.classList.remove("error");
+        pasAuth.lastElementChild.remove();
+    }
+    inputPassword.setAttribute("value", inputPassword.value);
+    inputPasswordLabel.firstChild.textContent = "Пароль";
+};
+
+authorizationForm.onsubmit = function () {
+    if  (!inputLogin.value.trim()) {
+        inputLogin.classList.add("error");
+        inputLoginLabel.firstChild.textContent = "Введите логин";
+        return false;
+    }
+    if  (!inputPassword.value.trim()) {
+        inputPassword.classList.add("error");
+        inputPasswordLabel.firstChild.textContent = "Введите пароль";
+        return false;
+    }
+    //Проверка на наличие ошибок
+    if (inputLogin.classList.contains("error") || inputPassword.classList.contains("error")) {
+        return false;
+    } else {
+        authorizationForm.submit();
     }
 }

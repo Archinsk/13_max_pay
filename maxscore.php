@@ -9,67 +9,36 @@ session_start();
 
 // В переменную data кладем все что передается от формы
 $data = $_POST;
-if(isset($data['do_login'])) { //Если нажата кнопка Войти.
-  //Создаем массив ошибок
-  $errors = array();
+//Если нажата кнопка Войти
+if(isset($data['do_login'])) {
   //Ищем пользователя по логину
   $user = R::findOne('users', 'login = ?', array($data['userLogin']));
     //Если логин существует,
     if ( $user ) { 
-        //то проверяем пароль
-        if ( password_verify($data['userPassword'], $user->password) )
-        {
-            //если пароль совпадает, в сессию записываем логин и является ли он админом
-            $userarray=$user->export();
-            $_SESSION['logged_user'] = $userarray['login'];
-			$_SESSION['is_admin'] = $userarray['isAdmin'];
-			
-            //Если пользователь авторизован, 
-            if(isset($_SESSION['logged_user']) ) {
-			  //то проверяем, является ли он админом
-			  if($_SESSION['is_admin'] == 1) {
-				//админа переводим на админскую страницу
-                header('Location: maxscore_adm.php');
-			  } else {
-			    //не админа переводим на страницу авторизованного пользователя
-                header('Location: maxscore_auth.php');
-			  }
-            }
-
-            echo '<div style="color:dreen;">'  .$_SESSION['logged_user']. ', вы авторизованы!<hr>';
-        }else
-        {
-            $errors[] = 'Неверно введен пароль!';
-        }
- 
-    } else { //иначе (пользователь не найден)
-      $errors[] = 'Пользователь с таким логином не найден!';
-    }
-//Вывод ошибок
-    if ( ! empty($errors) ) { //Если массив с ошибками не пуст
-      echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>'; // то выводим ошибки авторизации
-    }
-}
-
- /*     
-        {
-            //если пароль совпадает, то нужно авторизовать пользователя
-            $_SESSION['logged_user'] = $user;
-            echo '<div style="color:green;">Вы авторизованы!<br> 
-            Можете перейти на <a href="/">главную</a> страницу.</div><hr>';
-        }else
-        {
-            $errors[] = 'Неверно введен пароль!';
-        }
-
- 
-    if ( ! empty($errors) )
-    {
-        //выводим ошибки авторизации
-        echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
-    }
- */
-
+      //то проверяем пароль
+      if ( password_verify($data['userPassword'], $user->password) ) {
+        //если пароль совпадает, в сессию записываем логин и является ли он админом
+        $userarray=$user->export();
+        $_SESSION['logged_user'] = $userarray['login'];
+		$_SESSION['is_admin'] = $userarray['isAdmin'];
+		//Если пользователь авторизован,
+        if(isset($_SESSION['logged_user']) ) {
+		  //то проверяем, является ли он админом
+		  if($_SESSION['is_admin'] == 1) {
+		    //админа переводим на админскую страницу
+            header('Location: maxscore_adm.php');
+		  } else {
+		    //не админа переводим на страницу авторизованного пользователя
+            header('Location: maxscore_auth.php');
+		  };
+        };
+      } else {
+        $auth_error = 'Неверно введен пароль!';
+      };
+    } else {
+      $auth_error = 'Пользователь не зарегистрирован!';
+    };
+  };
 ?>
 
 <?php
@@ -127,7 +96,7 @@ if(isset($data['do_login'])) { //Если нажата кнопка Войти.
   <header class="header">
 	<div class="alert text-white text-center" role="alert">
 		<h2>Платежи Max Pay</h2>
-		<button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#registrationModal"><i class="bi bi-box-arrow-in-right"></i></button>
+		<button type="button" class="btn btn-warning"data-bs-toggle="modal" data-bs-target="#authorizationModal"><i class="bi bi-box-arrow-in-right"></i></button>
 	</div>
   </header>
 
@@ -163,26 +132,26 @@ if(isset($data['do_login'])) { //Если нажата кнопка Войти.
     	</div>
 
     <!-- Модальное окно авторизации-->
-    <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="authorizationModal" tabindex="-1" aria-labelledby="authorizationModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
-	      <form action="maxscore.php" class="p-0" method="POST"> <!--Ссылка на себя-->
+	      <form action="maxscore.php" class="p-0" method="POST" id="authorizationForm" novalidate> <!--Ссылка на себя-->
             <div class="modal-header">
-              <h4 class="modal-title" id="registrationModalLabel">Вход</h4>
+              <h4 class="modal-title" id="authorizationModalLabel">Вход</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="form-label-group mb-3">
+              <div class="form-label-group mb-3" id="logAuth">
                 <input type="text" id="inputLogin" class="form-control" placeholder="Login" name="userLogin" value="<?php echo @$data['userLogin']; ?>" required autofocus>
-                <label for="inputLogin" class="form-label">Логин</label>
+                <label for="inputLogin" class="form-label" id="inputLoginLabel">Логин</label>
               </div>
-              <div class="form-label-group mb-0">
+              <div class="form-label-group mb-0" id="pasAuth">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="userPassword" value="<?php echo @$data['userPassword']; ?>" required>
-                <label for="inputPassword" class="form-label">Пароль</label>
+                <label for="inputPassword" class="form-label" id="inputPasswordLabel">Пароль</label>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#authorizationModal">Регистрация</button>
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registrationModal">Регистрация</button>
               <button class="btn btn-primary" type="submit" name="do_login">Войти</button>
             </div>
           </form>
@@ -191,12 +160,12 @@ if(isset($data['do_login'])) { //Если нажата кнопка Войти.
     </div>
 
     <!-- Модальное окно регистрации-->
-    <div class="modal fade" id="authorizationModal" tabindex="-1" aria-labelledby="authorizationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <form action="maxscore.php" class="p-0" method="POST" id="registrationForm" novalidate> <!--Ссылка на себя-->
             <div class="modal-header">
-              <h4 class="modal-title" id="authorizationModalLabel">Регистрация</h4>
+              <h4 class="modal-title" id="registrationModalLabel">Регистрация</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -234,17 +203,42 @@ if(isset($data['do_login'])) { //Если нажата кнопка Войти.
 <script src="validation.js"></script>
 
   <?php
-    //var_dump($reg_errors);
+    //var_dump($auth_error);
+    if (isset($auth_error) ) {
+      echo '
+        <!-- Скрипт уведомления об ошибках валидации при авторизации -->
+        <script>
+          var authorizationModal = new bootstrap.Modal(document.getElementById("authorizationModal"));
+          authorizationModal.show();';
+          if ($auth_error == 'Пользователь не зарегистрирован!') {
+            echo '
+            inputLogin.classList.add("error");
+            let errorComment = createComment();
+            let commentContent = document.createTextNode("Пользователь не зарегистрирован!");
+            errorComment.appendChild(commentContent);
+            logAuth.appendChild(errorComment);';
+          } else if ($auth_error == 'Неверно введен пароль!') {
+            echo '
+            inputPassword.classList.add("error");
+            let errorComment = createComment();
+            let commentContent = document.createTextNode("Неверно введен пароль!");
+            errorComment.appendChild(commentContent);
+            pasAuth.appendChild(errorComment);';
+          };
+          echo '
+        </script>';
+      };
+
     if (! empty($reg_errors) ) {
 
         echo '
           <!-- Скрипт уведомления о выборе при регистрации уже занятого логина -->
           <script>
-            var authorizationModal = new bootstrap.Modal(document.getElementById("authorizationModal"));
-            authorizationModal.show();
+            var registrationModal = new bootstrap.Modal(document.getElementById("registrationModal"));
+            registrationModal.show();
             signupLogin.classList.add("error");
             let errorComment = createComment();
-            let commentContent = document.createTextNode("Данный логин уже занят");
+            let commentContent = document.createTextNode("Данный логин уже занят!");
             errorComment.appendChild(commentContent);
             logSign.appendChild(errorComment);
           </script>';
