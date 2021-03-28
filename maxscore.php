@@ -152,7 +152,7 @@ if(isset($data['do_login'])) {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registrationModal">Регистрация</button>
-              <button class="btn btn-primary" type="submit" name="do_login">Войти</button>
+              <button class="btn btn-warning" type="submit" name="do_login">Войти</button>
             </div>
           </form>
         </div>
@@ -184,7 +184,7 @@ if(isset($data['do_login'])) {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-              <button class="btn btn-primary" type="submit" name="do_signup">Зарегистрироваться</button>
+              <button class="btn btn-warning" type="submit" name="do_signup">Зарегистрироваться</button>
             </div>
           </form>
         </div>

@@ -1,4 +1,5 @@
 $back-color: #86a5c5;
+$utility-back: #c2d2e2;
 $header-back-color: #175a7e;
 $header-text-color: #ffffff;
 $little-lighter: rgba(255, 255, 255, 0.2);
@@ -127,11 +128,17 @@ body {
     border: 0;
   }
 
+.form-control{
+  background-color: $more-lighter;
+  color: $header-back-color;
+
+  &:focus {
+    background-color: $header-text-color;
+    box-shadow: 0 0 0 .25rem rgba(23,90,126,.25);
+  }
+}
+
   .input-group {
-    input{
-      background-color: $more-lighter;
-      color: $header-back-color;
-    }
     button {
       background-color: $header-back-color;
       font-weight: bold;
@@ -161,10 +168,32 @@ div.modal-header {
   background-size: 0.75em;
 }
 
-.error {
-  background-color: #ffefbf;
-}
+.modal-content {
+  .modal-header {
+    background-color: $utility-back;
+  }
+  .modal-body {
+    background-color: $back-color;
 
-.modal-content > div {
-  background-color: $back-color;
+    input{
+      background-color: $more-lighter;
+      color: $header-back-color;
+
+      &:focus {
+        background-color: $header-text-color;
+        box-shadow: 0 0 0 .25rem rgba(23,90,126,.25);
+      }
+    }
+
+    .form-text {
+      color: #ffefbf;
+    }
+
+    .error {
+      background-color: #ffefbf;
+    }
+  }
+  .modal-footer {
+    background-color: $back-color;
+  }
 }

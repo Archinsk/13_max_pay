@@ -104,10 +104,15 @@ input.form-control[name=cash] {
   border: 0;
 }
 
-.input-group input {
+.form-control {
   background-color: rgba(255, 255, 255, 0.5);
   color: #175a7e;
 }
+.form-control:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(23, 90, 126, 0.25);
+}
+
 .input-group button {
   background-color: #175a7e;
   font-weight: bold;
@@ -131,11 +136,27 @@ div.modal-header {
   background-size: 0.75em;
 }
 
-.error {
+.modal-content .modal-header {
+  background-color: #c2d2e2;
+}
+.modal-content .modal-body {
+  background-color: #86a5c5;
+}
+.modal-content .modal-body input {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #175a7e;
+}
+.modal-content .modal-body input:focus {
+  background-color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(23, 90, 126, 0.25);
+}
+.modal-content .modal-body .form-text {
+  color: #ffefbf;
+}
+.modal-content .modal-body .error {
   background-color: #ffefbf;
 }
-
-.modal-content > div {
+.modal-content .modal-footer {
   background-color: #86a5c5;
 }
 

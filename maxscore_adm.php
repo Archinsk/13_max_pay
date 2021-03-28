@@ -72,7 +72,7 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
     <div class="alert text-white text-center" role="alert">
         <h2>Max Pay</h2>
         <a href="logout.php" class="btn btn-warning ms-3"><i class="bi bi-box-arrow-right"></i></a>
-        <button type="button" class="btn btn-outline-warning ms-3" data-bs-toggle="modal" data-bs-target="#clearHistoryModal"><i class="bi bi-trash"></i></button>
+        <button type="button" class="btn btn-outline-light ms-3" data-bs-toggle="modal" data-bs-target="#clearHistoryModal"><i class="bi bi-trash"></i></button>
     </div>
   </header>
 </div>
@@ -161,7 +161,7 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
                 </select>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
                 <button class="btn btn-warning" type="submit" name="clear_history">Очистить</button>
               </div>
             </form>
