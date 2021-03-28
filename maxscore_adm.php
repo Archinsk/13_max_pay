@@ -71,7 +71,8 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
   <header class="header">
     <div class="alert text-white text-center" role="alert">
         <h2>Max Pay</h2>
-        <a href="logout.php" class="btn btn-warning"><i class="bi bi-box-arrow-right"></i></a>
+        <a href="logout.php" class="btn btn-warning ms-3"><i class="bi bi-box-arrow-right"></i></a>
+        <button type="button" class="btn btn-outline-warning ms-3" data-bs-toggle="modal" data-bs-target="#clearHistoryModal"><i class="bi bi-trash"></i></button>
     </div>
   </header>
 </div>
@@ -135,6 +136,39 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
   };
 ?>
 
+      <!-- Модальное окно очистки истории покупок -->
+      <div class="modal fade" id="clearHistoryModal" tabindex="-1" aria-labelledby="clearHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form action="clearhistory.php" class="p-0" method="POST" id="clearHistoryForm" novalidate>
+              <div class="modal-header">
+                <h4 class="modal-title" id="clearHistoryModalLabel">Очистка истории покупок</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <select class="form-select" id="clear_history_user" name="clear_history_user">
+                  <option id="clearHistorySelectHeader" selected>Выберите пользователя</option>
+                <?php>
+                  //Ищем записи пользователей, не являющихся админом
+                  $userslist = R::find( 'users', 'isAdmin = :admin', [':admin' => false] );
+                  //Выводим записи всех, не являющихся админом пользователей
+                  foreach( $userslist as $anyuser ) {
+                    echo '
+                      <option value="' .$anyuser->login. '">' .$anyuser->login. '</option>
+                    ';
+                  };
+                ?>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button class="btn btn-warning" type="submit" name="clear_history">Очистить</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
 </main>
 </div>
 
@@ -142,5 +176,8 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
+
+<!-- Скрипты валидации -->
+<script src="validation2.js"></script>
 
 </body>

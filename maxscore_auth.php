@@ -68,7 +68,8 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
     <header class="header">
       <div class="alert text-white text-center" role="alert">
         <h2>Max Pay</h2>
-        <a href="logout.php" class="btn btn-warning"><i class="bi bi-box-arrow-right"></i></a>
+        <a href="logout.php" class="btn btn-warning ms-3"><i class="bi bi-box-arrow-right"></i></a>
+        <button type="button" class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#purcheseHistoryModal"><i class="bi bi-info-circle"></i></button>
       </div>
     </header>
   
@@ -141,6 +142,43 @@ echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
             <div class="modal-body">
               <p>За пополнением обратитесь к аминистратору</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Модальное окно истории покупок -->
+      <div class="modal fade" id="purcheseHistoryModal" tabindex="-1" aria-labelledby="purcheseHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="purcheseHistoryModalLabel">История покупок</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                <?php>
+                  $purchaseslist = R::find( 'purchases', 'login = :name', [':name' => $_SESSION['logged_user'] ] );
+                  foreach( $purchaseslist as $anypurchase) {
+                    //Вычисляем дату транзакции
+                    $purchasesdate = getdate($anypurchase->purchase_date + 60*60*4)['mday'] . '.' . sprintf("%02d", getdate($anypurchase->purchase_date + 60*60*4)["mon"]) . '.' . getdate($anypurchase->purchase_date + 60*60*4)['year'];
+                    //Формируем текст записи списка
+                    $purchaseItem = $anypurchase->export();
+                    $payer = $purchaseItem['payer_admin'];
+                    if (isset($payer)) {
+                      echo '
+                        <li>Плюс ' .$purchasesdate. ' - <span class="badge refill">' .$anypurchase->cost. ' руб</span> от ' .$anypurchase->payer_admin. '</li>';
+                      } else {
+                        echo '
+                          <li>Покупка - ' .$purchasesdate. ' - <span class="badge">' .$anypurchase->cost. ' руб</span>' .$message. '</li>';
+                      };
+                    };
+                ?>
+                </ul>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+              </div>
           </div>
         </div>
       </div>

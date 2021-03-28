@@ -164,3 +164,7 @@ div.modal-header {
 .error {
   background-color: #ffefbf;
 }
+
+.modal-content > div {
+  background-color: $back-color;
+}

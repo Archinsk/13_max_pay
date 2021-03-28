@@ -150,4 +150,4 @@ authorizationForm.onsubmit = function () {
     } else {
         authorizationForm.submit();
     }
-}
+};

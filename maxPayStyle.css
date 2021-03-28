@@ -135,4 +135,8 @@ div.modal-header {
   background-color: #ffefbf;
 }
 
+.modal-content > div {
+  background-color: #86a5c5;
+}
+
 /*# sourceMappingURL=maxPayStyle.css.map */
