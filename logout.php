@@ -1,15 +1,13 @@
-<?php
-// Страница авторизации
+<?php // Разлогиниваем пользователя
+  // Подключаем RedBeanPHP
+  require 'rb.php';
+  // Соединямся с БД
+  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' ); //Указываем адрес сервера, имя базы, логин и пароль пользователя (синтаксис RedBeanPHP)
+  // Открываем сессию
+  session_start();
 
-// Подключаем RedBeanPHP
-require 'rb.php';
+  //Удаляем пользователя из сессии
+  unset($_SESSION['logged_user']);
 
-// Соединямся с БД
-R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' ); //Указываем адрес сервера, имя базы, логин и пароль пользователя (синтаксис RedBeanPHP)
-
-session_start();
-
-unset($_SESSION['logged_user']);
-header('Location: maxscore.php');
-
+  header('Location: maxscore.php');
 ?>

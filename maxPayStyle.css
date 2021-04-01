@@ -2,38 +2,9 @@ body {
   background-color: #86a5c5;
 }
 
-main {
-  color: #175a7e;
-}
-main div.col:first-child .card {
-  background-color: #e6dcc1;
-}
-main div.col:nth-child(2) .card {
-  background-color: #e6d8e4;
-}
-main div.col:last-child .card {
-  background-color: #cae3e6;
-}
-main div.alert {
-  background-color: #175a7e;
-  color: #ffffff;
-}
-main div.alert p {
-  margin-bottom: 0;
-}
-main div.alert span {
-  font-size: 1rem;
-}
-
-#stick {
-  position: sticky;
-  top: 0;
-  z-index: 1020;
-}
-
 .header div {
   background-color: #175a7e;
-  color: #ffffff;
+  color: white;
   overflow: auto;
 }
 .header div h2 {
@@ -48,7 +19,7 @@ main div.alert span {
   }
 }
 .header div h2:hover {
-  text-shadow: #175a7e 0 0 3px, #ffffff 0 0 12px, #ffffff 0 0 24px;
+  text-shadow: #175a7e 0 0 3px, white 0 0 12px, white 0 0 24px;
 }
 .header div a {
   float: right;
@@ -57,7 +28,34 @@ main div.alert span {
   float: right;
 }
 
-summary {
+main {
+  color: #175a7e;
+}
+main #stick {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: white;
+}
+main #stick p {
+  margin-bottom: 0;
+}
+main #stick span {
+  font-size: 1rem;
+}
+main .alert {
+  background-color: #175a7e;
+}
+main div.col:first-child .card {
+  background-color: #e6dcc1;
+}
+main div.col:nth-child(2) .card {
+  background-color: #e6d8e4;
+}
+main div.col:last-child .card {
+  background-color: #cae3e6;
+}
+main summary {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 0.25rem;
   height: 2.375rem;
@@ -65,98 +63,86 @@ summary {
   list-style: none;
   padding: 0 0.75rem;
 }
-summary :focus {
+main summary :focus {
   outline-color: transparent;
   outline-width: 0;
   outline-style: none;
 }
-
-summary::-webkit-details-marker {
+main summary ::-webkit-details-marker {
   display: none;
 }
-
-ul {
+main ul {
   padding-left: 0;
   margin-bottom: 0;
   list-style-type: none;
 }
-
-li {
+main ul li {
   background-color: rgba(255, 255, 255, 0.2);
   border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
   padding: 0 0.75rem 0.125rem;
 }
-li:first-child {
+main ul li:first-child {
   border-top: 1px dotted rgba(255, 255, 255, 0.5);
 }
-li span.badge {
+main ul li span.badge {
   background-color: rgba(255, 255, 255, 0.2);
   color: #175a7e;
 }
-li span.badge.refill {
+main ul li span.badge.refill {
   background-color: rgba(255, 255, 255, 0.5);
 }
-
-input.form-control[name=cash] {
+main form .form-control {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #175a7e;
+}
+main form .form-control[name=cash] {
   color: #175a7e;
   text-align: right;
   background-color: rgba(255, 255, 255, 0.2);
   border: 0;
 }
-
-.form-control {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #175a7e;
-}
-.form-control:focus {
-  background-color: #ffffff;
+main form .form-control:focus {
+  background-color: white;
   box-shadow: 0 0 0 0.25rem rgba(23, 90, 126, 0.25);
 }
-
-.input-group button {
-  background-color: #175a7e;
-  font-weight: bold;
-  color: #ffffff;
-  transition: text-shadow 0.5s ease-out;
-}
-.input-group button:hover {
-  color: #ffffff;
-  text-shadow: #175a7e 0 0 2px, #ffffff 0 0 6px, #ffffff 0 0 12px;
-}
-
-form:nth-child(odd) .container {
+main form:nth-child(odd) .container {
   background-color: rgba(255, 255, 255, 0.2);
 }
-
-div.modal-header {
+main form .input-group button {
+  background-color: #175a7e;
+  font-weight: bold;
+  color: white;
+  transition: text-shadow 0.5s ease-out;
+}
+main form .input-group button:hover {
+  color: white;
+  text-shadow: #175a7e 0 0 2px, white 0 0 6px, white 0 0 12px;
+}
+main .modal .modal-content .modal-header {
+  background-color: #c2d2e2;
   padding: 0.625rem 1rem;
 }
-
-.btn-close {
+main .modal .modal-content .modal-header .btn-close {
   background-size: 0.75em;
 }
-
-.modal-content .modal-header {
-  background-color: #c2d2e2;
-}
-.modal-content .modal-body {
+main .modal .modal-content .modal-body {
   background-color: #86a5c5;
 }
-.modal-content .modal-body input {
+main .modal .modal-content .modal-body input {
   background-color: rgba(255, 255, 255, 0.5);
   color: #175a7e;
 }
-.modal-content .modal-body input:focus {
-  background-color: #ffffff;
+main .modal .modal-content .modal-body input:focus {
+  background-color: white;
   box-shadow: 0 0 0 0.25rem rgba(23, 90, 126, 0.25);
 }
-.modal-content .modal-body .form-text {
+main .modal .modal-content .modal-body .form-text {
   color: #ffefbf;
 }
-.modal-content .modal-body .error {
+main .modal .modal-content .modal-body .error {
   background-color: #ffefbf;
 }
-.modal-content .modal-footer {
+main .modal .modal-content .modal-footer {
   background-color: #86a5c5;
 }
 
