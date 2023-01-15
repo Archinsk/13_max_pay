@@ -1,10 +1,6 @@
 <?php //Страница авторизованного пользователя
-  // Подключаем RedBeanPHP
-  require 'rb.php';
-  // Соединямся с БД
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' ); //Указываем адрес сервера, имя базы, логин и пароль пользователя (синтаксис RedBeanPHP)
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
 
   //Если на этой странице оказался незарегистрированный или разлогиненный пользователь, то переводим его на страницу неавторизованного пользователя
   if(!$_SESSION['logged_user']) {
@@ -29,8 +25,8 @@
     <!-- Шрифт иконок Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- Стили maxscore -->
-    <link rel="stylesheet" href="maxPayStyle.css">
-    <title>Max Score</title> <!-- Название вкладки в браузере -->
+    <link rel="stylesheet" href="css/maxPayStyle.css">
+    <title>Max Pay</title> <!-- Название вкладки в браузере -->
   </head>
 
   <body>

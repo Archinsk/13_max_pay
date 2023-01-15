@@ -1,9 +1,6 @@
 <?php //Пополнение админом счета пользователя
-  //Подключаем RedBeanPHP
-  require 'rb.php';
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' );
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
 
   //Из сессии передаем имя админа
   $refilladmin = $_SESSION['logged_user'];

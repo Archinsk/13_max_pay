@@ -1,0 +1,149 @@
+body {
+  background-color: #86a5c5;
+}
+
+.header div {
+  background-color: #175a7e;
+  color: white;
+  overflow: auto;
+}
+.header div h2 {
+  display: inline-block;
+  margin-bottom: 0;
+  /*line-height: 1.5;*/
+  transition: text-shadow 0.5s ease-out;
+}
+@media screen and (max-width: 476px) {
+  .header div h2 {
+    line-height: 1.5;
+  }
+}
+.header div h2:hover {
+  text-shadow: #175a7e 0 0 3px, white 0 0 12px, white 0 0 24px;
+}
+.header div a {
+  float: right;
+}
+.header div button {
+  float: right;
+}
+
+main {
+  color: #175a7e;
+}
+main #stick {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: white;
+}
+main #stick p {
+  margin-bottom: 0;
+}
+main #stick span {
+  font-size: 1rem;
+}
+main .alert {
+  background-color: #175a7e;
+}
+main div.col:first-child .card {
+  background-color: #e6dcc1;
+}
+main div.col:nth-child(2) .card {
+  background-color: #e6d8e4;
+}
+main div.col:last-child .card {
+  background-color: #cae3e6;
+}
+main summary {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  height: 2.375rem;
+  line-height: 2.25;
+  list-style: none;
+  padding: 0 0.75rem;
+}
+main summary :focus {
+  outline-color: transparent;
+  outline-width: 0;
+  outline-style: none;
+}
+main summary ::-webkit-details-marker {
+  display: none;
+}
+main ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+main ul li {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
+  padding: 0 0.75rem 0.125rem;
+}
+main ul li:first-child {
+  border-top: 1px dotted rgba(255, 255, 255, 0.5);
+}
+main ul li span.badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #175a7e;
+}
+main ul li span.badge.refill {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+main form .form-control {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #175a7e;
+}
+main form .form-control[name=cash] {
+  color: #175a7e;
+  text-align: right;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 0;
+}
+main form .form-control:focus {
+  background-color: white;
+  box-shadow: 0 0 0 0.25rem rgba(23, 90, 126, 0.25);
+}
+main form:nth-child(odd) .container {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+main form .input-group button {
+  background-color: #175a7e;
+  font-weight: bold;
+  color: white;
+  transition: text-shadow 0.5s ease-out;
+}
+main form .input-group button:hover {
+  color: white;
+  text-shadow: #175a7e 0 0 2px, white 0 0 6px, white 0 0 12px;
+}
+main .modal .modal-content .modal-header {
+  background-color: #c2d2e2;
+  padding: 0.625rem 1rem;
+}
+main .modal .modal-content .modal-header .btn-close {
+  background-size: 0.75em;
+}
+main .modal .modal-content .modal-body {
+  background-color: #86a5c5;
+}
+main .modal .modal-content .modal-body input {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #175a7e;
+}
+main .modal .modal-content .modal-body input:focus {
+  background-color: white;
+  box-shadow: 0 0 0 0.25rem rgba(23, 90, 126, 0.25);
+}
+main .modal .modal-content .modal-body .form-text {
+  color: #ffefbf;
+}
+main .modal .modal-content .modal-body .error {
+  background-color: #ffefbf;
+}
+main .modal .modal-content .modal-footer {
+  background-color: #86a5c5;
+}
+
+/*# sourceMappingURL=maxPayStyle.css.map */

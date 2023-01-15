@@ -1,10 +1,7 @@
 <?php //Страница неавторизованного пользователя
-  // Подключаем RedBeanPHP
-  require 'rb.php';
-  // Соединямся с БД
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' ); //Указываем адрес сервера, имя базы, логин и пароль пользователя (синтаксис RedBeanPHP)
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
+  
   // В переменную data кладем все что передается от формы
   $data = $_POST;
 
@@ -81,10 +78,10 @@
     <!-- Шрифт иконок Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- Стили maxscore -->
-    <link rel="stylesheet" href="maxPayStyle.css">
+    <link rel="stylesheet" href="css/maxPayStyle.css">
     <!-- Стили полей регистрации и авторизации с плавающими ярлыками -->
-    <link rel="stylesheet" href="floating-labels.css">
-    <title>Max Score</title> <!-- Название вкладки в браузере -->
+    <link rel="stylesheet" href="css/floating-labels.css">
+    <title>Max Pay</title> <!-- Название вкладки в браузере -->
   </head>
 
   <body>
@@ -99,7 +96,7 @@
 
       <main>
         <div id="stick" class="alert text-white text-center" role="alert">
-          Получи 1000 рублей при регистрации!
+          Получи 1000 псевдорублей при регистрации!
         </div>
         <div class="row row-cols-1 row-cols-md-3">
     	  <div class="col mb-4">
@@ -196,7 +193,7 @@
             crossorigin="anonymous"></script>
 
     <!-- Скрипты валидации форм регистрации и авторизации-->
-    <script src="validation.js"></script>
+    <script src="js/validation.js"></script>
 
     <?php
       //var_dump($auth_error);

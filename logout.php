@@ -1,10 +1,6 @@
 <?php // Разлогиниваем пользователя
-  // Подключаем RedBeanPHP
-  require 'rb.php';
-  // Соединямся с БД
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' ); //Указываем адрес сервера, имя базы, логин и пароль пользователя (синтаксис RedBeanPHP)
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
 
   //Удаляем пользователя из сессии
   unset($_SESSION['logged_user']);

@@ -1,9 +1,6 @@
 <?php //Добавление задания в список заданий
-  //Подключаем RedBeanPHP
-  require 'rb.php';
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' );
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
 
   //Передаем все переменные из POST в переменную data
   $data = $_POST;

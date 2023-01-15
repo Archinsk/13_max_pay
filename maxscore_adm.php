@@ -1,10 +1,6 @@
 <?php //Страница авторизованного админа
-  // Подключаем RedBeanPHP
-  require 'rb.php';
-  // Соединямся с БД
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' ); //Указываем адрес сервера, имя базы, логин и пароль пользователя (синтаксис RedBeanPHP)
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
 
   //Если на этой странице оказался незарегистрированный или не админ, то переводим его на соответствующую страницу
   if(!$_SESSION['logged_user']) {
@@ -31,8 +27,8 @@
     <!-- Шрифт иконок Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- Стили maxscore -->
-    <link rel="stylesheet" href="maxPayStyle.css">
-    <title>Max Score</title> <!-- Название вкладки в браузере -->
+    <link rel="stylesheet" href="css/maxPayStyle.css">
+    <title>Max Pay</title> <!-- Название вкладки в браузере -->
   </head>
 
   <body>
@@ -145,7 +141,7 @@
             crossorigin="anonymous"></script>
 
     <!-- Скрипты валидации -->
-    <script src="validation2.js"></script>
+    <script src="js/validation2.js"></script>
 
   </body>
 

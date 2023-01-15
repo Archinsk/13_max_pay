@@ -1,9 +1,6 @@
 <?php //Очистка истории покупок пользователя
-  //Подключаем RedBeanPHP
-  require 'rb.php';
-  R::setup( 'mysql:host=localhost; dbname=maxscore', 'mikhail', '9039033661!' );
-  // Открываем сессию
-  session_start();
+  // Подключаем RedBeanPHP и получаем доступ к БД
+  require 'db.php';
 
   //Передаем из POST имя пользователя
   $clearable_user = $_POST['clear_history_user'];
